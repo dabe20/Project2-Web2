@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :transactions
+
   #get 'session/new'
 
   resources :sessions, only: [:create]

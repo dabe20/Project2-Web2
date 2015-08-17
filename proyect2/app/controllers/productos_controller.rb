@@ -5,6 +5,16 @@ class ProductosController < ApplicationController
   # GET /productos.json
   def index
     @productos = Producto.all
+    respond_to do |format|
+      if Session.find_by(token: params[:token])
+        if producto = Producto.find_by(name: params[:name]
+          @productos = producto
+        else
+          format.json {render json: @products, status: 200}
+        end
+      else
+        format.json {render json: {:error => "error, producto no encontrado.."}.to_json, status: 422}
+      end
   end
 
   # GET /productos/1
