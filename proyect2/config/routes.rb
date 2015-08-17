@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  #get 'session/new'
+
+  resources :sessions, only: [:create]
+
+  get 'sessions/authenticate', to: 'sessions#new', as: 'authenticate'
+  get 'sessions/logout', to: 'sessions#destroy', as: 'logout'
   resources :users, only: [:new, :create]
 
   resources :productos
